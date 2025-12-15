@@ -3,7 +3,7 @@ import { FormData, ClaimStatus, IssueCategory, AnalysisResult } from './types';
 import InputForm from './components/InputForm';
 import AnalysisResultDisplay from './components/AnalysisResult';
 import { analyzeClaim } from './services/geminiService';
-import { Activity, Landmark } from 'lucide-react';
+import { Activity, Landmark, ShieldCheck } from 'lucide-react';
 
 const App: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
@@ -25,7 +25,8 @@ const App: React.FC = () => {
       const analysis = await analyzeClaim(formData);
       setResult(analysis);
     } catch (err) {
-      setError("Gagal memproses analisis. Pastikan API Key valid dan coba lagi. " + (err instanceof Error ? err.message : ''));
+      setError("Terjadi kesalahan sistem. Silakan coba lagi.");
+      console.error(err);
     } finally {
       setIsLoading(false);
     }
@@ -46,9 +47,9 @@ const App: React.FC = () => {
             </div>
           </div>
           <div className="text-right hidden md:block">
-            <div className="text-xs text-slate-400">Powered by</div>
-            <div className="text-sm font-semibold text-blue-400 flex items-center gap-1 justify-end">
-              <Activity className="w-3 h-3" /> Gemini 3 Pro (Preview)
+            <div className="text-xs text-slate-400">System Core</div>
+            <div className="text-sm font-semibold text-emerald-400 flex items-center gap-1 justify-end">
+              <ShieldCheck className="w-3 h-3" /> FICS Expert Engine v1.0
             </div>
           </div>
         </div>
@@ -60,7 +61,7 @@ const App: React.FC = () => {
         <div className="bg-white border-l-4 border-blue-600 p-6 rounded-r-lg shadow-sm mb-8">
           <h2 className="text-lg font-bold text-slate-800 mb-2">Sistem Integrasi Akuntansi & Kepatuhan BLUD</h2>
           <p className="text-slate-600 text-sm leading-relaxed max-w-4xl">
-            Agen ini membantu staf akuntansi dalam menganalisis status klaim, memverifikasi dokumen SPI, 
+            Sistem Pakar (Expert System) ini membantu staf akuntansi dalam menganalisis status klaim, memverifikasi dokumen SPI, 
             dan mensimulasikan pencatatan jurnal penyesuaian (Akrual Basis) sesuai PSAP 13.
             Output simulasi mencakup dampak pada Neraca dan Laporan Operasional.
           </p>
