@@ -1,0 +1,5 @@
+{
+  "name": "FICS - Financial Compliance & SIA Reporting Agent",
+  "description": "An AI-powered interface for hospital financial compliance, simulating accrual-based accounting entries (Jurnal Penyesuaian) and financial statement impacts for BLUD hospitals.",
+  "requestFramePermissions": []
+}
